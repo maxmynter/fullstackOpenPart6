@@ -8,8 +8,9 @@ const AnecdoteList = () => {
 
   const dispatch = useDispatch();
 
-  const vote = async ({ id, content }) => {
-    dispatch(voteAnecdote(id));
+  const vote = async (anecdote) => {
+    const { id, content } = anecdote;
+    dispatch(voteAnecdote(anecdote));
     dispatch(notify(content));
     setTimeout(() => {
       dispatch(removeNotification(content));

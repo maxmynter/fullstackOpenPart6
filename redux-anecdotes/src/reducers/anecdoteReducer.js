@@ -1,23 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import anecdoteService from "../services/anecdotes";
 
-const getId = () => (100000 * Math.random()).toFixed(0);
-
 const initialState = [];
 
 const anecdoteSlice = createSlice({
   name: "anecdotes",
   initialState,
   reducers: {
-    voteAnecdote(state, action) {
-      const id = action.payload;
-      const votedAnecdote = state.find((a) => a.id === id);
-      const cangedAnectode = {
-        ...votedAnecdote,
-        votes: votedAnecdote.votes + 1,
-      };
+    addVoteAnecdote(state, action) {
       return state.map((anecdote) =>
-        anecdote.id !== cangedAnectode.id ? anecdote : cangedAnectode
+        anecdote.id !== action.payload.id ? anecdote : action.payload
       );
     },
     appendAnecdote(state, action) {
@@ -29,7 +21,7 @@ const anecdoteSlice = createSlice({
   },
 });
 
-export const { voteAnecdote, appendAnecdote, setAnecdotes } =
+export const { addVoteAnecdote, appendAnecdote, setAnecdotes } =
   anecdoteSlice.actions;
 
 export const initializeAnecdotes = () => {
@@ -46,6 +38,13 @@ export const addNewAnecdote = (content) => {
       votes: 0,
     });
     dispatch(appendAnecdote(newAnecdote));
+  };
+};
+
+export const voteAnecdote = (anecdote) => {
+  return async (dispatch) => {
+    const response = await anecdoteService.voteAnecdote(anecdote);
+    dispatch(addVoteAnecdote(response.data));
   };
 };
 export default anecdoteSlice.reducer;
