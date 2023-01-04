@@ -1,12 +1,14 @@
 import AnecdoteList from "./components/anecdoteList";
 import AnecdoteForm from "./components/anecdoteForm";
 import Notification from "./components/Notification";
+import Filter from "./components/filter";
 
 const App = () => {
   return (
     <div>
       <Notification />
       <h2>Anecdotes</h2>
+      <Filter />
       <AnecdoteList />
       <AnecdoteForm />
     </div>
