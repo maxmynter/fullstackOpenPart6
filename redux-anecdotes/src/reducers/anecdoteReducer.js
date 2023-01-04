@@ -26,6 +26,17 @@ export const voteAnecdote = (id) => {
   };
 };
 
+export const addNewAnecdote = (content) => {
+  return {
+    type: "ADD_NEW",
+    data: {
+      id: getId(),
+      content,
+      votes: 0,
+    },
+  };
+};
+
 const reducer = (state = initialState, action) => {
   console.log("state now: ", state);
   console.log("action", action);
@@ -40,6 +51,8 @@ const reducer = (state = initialState, action) => {
       return state.map((anecdote) =>
         anecdote.id !== cangedAnectode.id ? anecdote : cangedAnectode
       );
+    case "ADD_NEW":
+      return state.concat(action.data);
     default:
       return state;
   }
