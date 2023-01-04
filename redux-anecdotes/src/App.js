@@ -1,10 +1,11 @@
-import Anecdotes from "./components/anecdotes";
-import AddNewAnecdotes from "./components/newAnecdote";
+import AnecdoteList from "./components/anecdotes";
+import AnecdoteForm from "./components/anecdoteForm";
 const App = () => {
   return (
     <div>
-      <Anecdotes />
-      <AddNewAnecdotes />
+      <h2>Anecdotes</h2>
+      <AnecdoteList />
+      <AnecdoteForm />
     </div>
   );
 };
