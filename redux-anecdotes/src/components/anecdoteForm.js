@@ -4,11 +4,14 @@ import { addNewAnecdote } from "../reducers/anecdoteReducer";
 
 const AnecdoteForm = () => {
   const dispatch = useDispatch();
+
   const addAnecdote = (event) => {
     event.preventDefault();
-    dispatch(addNewAnecdote(event.target.anecdote.value));
-    event.target.reset();
+    const content = event.target.anecdote.value;
+    event.target.anecdote.value = "";
+    dispatch(addNewAnecdote(content));
   };
+
   return (
     <>
       <h2>create new</h2>

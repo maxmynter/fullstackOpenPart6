@@ -9,7 +9,6 @@ const AnecdoteList = () => {
   const dispatch = useDispatch();
 
   const vote = async ({ id, content }) => {
-    console.log("vote", id);
     dispatch(voteAnecdote(id));
     dispatch(notify(content));
     setTimeout(() => {
@@ -18,11 +17,9 @@ const AnecdoteList = () => {
   };
   return (
     <>
-      {console.log("anecdotes", anecdotes)}
       {anecdotes
         .slice()
         .filter((anecdote) => {
-          console.log(filterBy, anecdote.content);
           return filterBy !== null ? anecdote.content.includes(filterBy) : true;
         })
         .sort((a, b) => b.votes - a.votes)
