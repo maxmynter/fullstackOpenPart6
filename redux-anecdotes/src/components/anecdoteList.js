@@ -18,6 +18,7 @@ const AnecdoteList = () => {
   };
   return (
     <>
+      {console.log("anecdotes", anecdotes)}
       {anecdotes
         .slice()
         .filter((anecdote) => {
