@@ -1,17 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  text: "Default Notification",
-};
+const initialState = [];
 
 const notificationSlice = createSlice({
   name: "notifications",
   initialState,
   reducers: {
     notify(state, action) {
-      return initialState;
+      return state.concat({
+        text: `Voted for anecdote: ${action.payload}`,
+      });
+    },
+    removeNotification(state, action) {
+      return state.filter(
+        (notification) => !notification.text.includes(action.payload)
+      );
     },
   },
 });
-export const { notify } = notificationSlice.actions;
+export const { notify, removeNotification } = notificationSlice.actions;
 export default notificationSlice.reducer;
