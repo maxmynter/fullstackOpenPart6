@@ -8,8 +8,8 @@ const Notification = (props) => {
   };
   return (
     <>
-      {props.notifications.length >= 1 && (
-        <div style={style}>{props.notifications.slice(-1)[0].text}</div>
+      {props.notification.text && (
+        <div style={style}>{props.notification.text}</div>
       )}
     </>
   );
@@ -17,7 +17,7 @@ const Notification = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    notifications: state.notifications,
+    notification: state.notification,
   };
 };
 
